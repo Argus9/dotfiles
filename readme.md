@@ -1,63 +1,21 @@
 # Dotfiles
 
-Something like this process should get new laptop working...
+# Setting up a new workstation
+ 
+ Our new machine setup script is based on strap https://github.com/mikemcquaid/strap. It assumes you don't have git or any tooling installed and that you've already forked [our default dotfiles repo](https://github.com/mikegrassotti/dotfiles) to become your dotfiles repo. 
+ 
+ 1. Fork https://github.com/mikegrassotti/dotfiles unless you have your own dotfiles. If you do STOP and let's figure this out.
+ 1. Review
+ 1. Visit https://osx-strap.herokuapp.com/ and use this to generate a strap script customized for your github user. 
+ 1. run the script
+ ```
+ cd Downloads
+ bash bin/strap.sh
+ ```
 
-## Checklist
+This script will automatically download your dotfiles repo then run it's script/setup.sh script.
+It will also download and run your brew bundle file if you have one in /{gituser}/homebrew-brewfile/Brewfile
 
-### Install xcode developer tools (via terminal) or skip and install via AppStore
-
-    xcode-select --install
-
-### Clone (or fork) this repo and add symlinks
-
-    cd ~
-    git clone https://github.com/mikegrassotti/dotfiles.git
-    ln -s dotfiles/vimrc .vimrc
-    ln -s dotfiles/zshrc .zshrc
-    # maybe more link ackrc, tmux, etc...
-    cd dotfiles
-
-### Install oh-my-zsh
-
-    curl -L http://install.ohmyz.sh | sh
-
-### Install homebrew
-   
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-### Run brew doctor to make sure everything is ok
-    brew doctor
-
-### Install Brew Bundle and all the apps listed in Brewfile
-     
-    brew tap Homebrew/bundle
-    brew bundle
-
-### Install latest version of node and set as default
-nvm install 0.12
-nvm alias default 0.12
-
-### Install ruby and some gems
-````
-# Install latest version of ruby and set as default
-ruby-install ruby
-
-# Install global npm packages
-npm install -g ember-cli
-npm install -g bower
-npm install -g phantomjs
-
-# Install global ruby gems
-gem install bundler
-gem install rails
-gem install gem-path
-gem install pg
-# nokogiri depends on a brew package ...
-gem install nokogiri -- --with-iconv-dir=`brew --prefix libiconv`
-````
-
-## Using vim...
-
-Start vim - plugins should install automagically. 
-To see if it worked, run `:PlugStatus` and maybe `:PlugInstall` if needed
-Leader key is mapped to `,` 
+Notes and issues
+ - had to remove git credentials from the osx keychain
+ 
